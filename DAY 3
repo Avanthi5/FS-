@@ -1,0 +1,130 @@
+PROGRAM 1:
+
+Gene and Minne are playing with the words. 
+Minne is always sure that his word will be equal to the Genes word, after moving few letters of the Genes word to the end.
+Help Minne to solve the problem.
+
+The first line of input contains the Genes word followed by Minne word. 
+If it matches print true else print false
+
+
+Sample Test Case - 1
+input = abcde 
+eabcd
+output = true 
+
+
+After performing the Genes word abcde-bcdea-cdeab-deabc-eabcd.
+
+
+Sample Test Case - 2
+input = abcdef
+fedcba
+output = false
+
+Explanation -
+After performing the Genes word  abcdef bcdefa cdefab defabc efabcd fabcde 
+which doesnt match with the Minne word so the output is false 
+
+
+pYTHON:
+
+def check(s1,s2):
+    k=[(s1[i+1:len(s1)]+s1[0:i+1]) for i in range(len(s1)-1)]
+    k.append(s1)
+    if s2 in k:
+        return True
+    return False
+        
+s1=input()
+s2=input()
+print(check(s1,s2))
+
+
+
+PROGRAM 2:
+
+Mr. Bob is a Military Encoders. 
+Mr. Bob writes a word as shown below and then merges them. 
+Help Bob to write the code. 
+
+Mr. Bob will be given a word 'w' and a number 'n' 
+
+Sample Test Case - 1
+input = 
+ABCDE
+2
+output = ACEBD
+
+
+This is How Bob writes the letters of the word 
+A    C    E
+   B    D
+
+Now concatenate the two rows and ignore spaces in every row. We get ACEBD
+
+
+Sample Test Case - 2
+input = system
+3
+output = seytms
+
+
+s         e
+  y    t    m
+     s
+
+Now concatenate the 3 rows we get seytms
+
+
+jAVA CODE(GFG ZIGZAG):
+import java.util.*;
+class test
+{
+    public static void zigzag(String str,int n)
+    {
+        if (n == 1)
+        {
+            System.out.print(str);
+            return;
+        }
+        char[] str1 = str.toCharArray();
+        int len = str.length();
+        String[] arr = new String[n];
+        Arrays.fill(arr, "");
+        int row = 0;
+        boolean down = true; 
+        for (int i = 0; i < len; ++i)
+        {
+            arr[row] += (str1[i]);
+            if (row == n - 1)
+            {
+                down = false;
+            }
+            else if (row == 0)
+            {
+                down = true;
+            }
+            if (down)
+            {
+                row++;
+            }
+            else
+            {
+                row--;
+            }
+        }
+ 
+        for (int i = 0; i < n; ++i)
+        {
+            System.out.print(arr[i]);
+        }
+    }
+    public static void main(String [] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        String str=sc.next();
+        int n=sc.nextInt();
+        zigzag(str,n);
+    }
+}
