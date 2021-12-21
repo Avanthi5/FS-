@@ -1,0 +1,130 @@
+You are given a list of N integers List[], list contains both +ve and -ve integers.
+Your task is to findout, the Highest Product possible,
+Where the product is the product of all the elements of contiguous sublist sList[],
+and sub list should conatin atleast 1 integer.
+
+Input Format:
+-------------
+Line-1: An integer N.
+Line-2: N space separated integers, List[].
+
+Output Format:
+--------------
+Print an integer output, the highest product.
+
+Sample Input-1:
+---------------
+4
+2 3 -2 4
+
+Sample Output-1:
+----------------
+6
+
+Explanation:
+------------
+Product of contiguous sub list [2,3].
+
+
+Sample Input-2:
+---------------
+3
+-2 0 -3
+
+Sample Output-2:
+----------------
+0
+
+Explanation:
+------------
+Product of sub list [0], where [-2,-3] is not a contiguous sublist
+
+
+SOL:
+def pro(arr):
+    minVal = arr[0]
+    maxVal = arr[0]
+    maxProduct = arr[0]
+    n=len(l)
+    for i in range(1, n, 1):
+        if (arr[i] < 0):
+            temp = maxVal
+            maxVal = minVal
+            minVal = temp
+        maxVal = max(arr[i], maxVal * arr[i])
+        minVal = min(arr[i], minVal * arr[i])
+    maxProduct = max(maxProduct, maxVal)
+    return maxProduct
+n=int(input())
+l=list(map(int,input().split()))
+print(pro(l))
+    
+  
+Arjun is playing a word game in his tab.When he start the game , It displays a word and he has to check for any two adjacent characters which are same.If found he has to select those two characters by tapping, so that both characters will be deleted from the word and the word size shrinks by 2. This process to be repeated until the word has no two adjacent characters are same.
+You task is to help Arjun to perform the above task and Return the final word obtained.
+
+
+
+Input Format:
+-------------
+Line-1: A string represents the word.
+
+Output Format:
+--------------
+Return a string or empty string.
+
+
+If empty string print -1
+
+Constraints:
+------------   
+    1 <= word.length <= 10^5   
+    word consists only lower case letters.
+
+Sample Input-1:
+---------------
+pqqprs
+
+Sample Output-1:
+----------------
+rs
+
+Explanation:
+-------------
+Initially , Delete two 'q's then the word will be 'pprs'. Now Delete two 'p's then the word will be rs.
+
+Sample Input-2:
+---------------
+pqqqprrs
+
+Sample Output-2:
+----------------
+pqps
+
+Explanation:
+-------------
+Initially , Delete two 'q's then the word will be 'pqprrs'. Now Delete two 'r's then the word will be pqps.
+
+
+CODE:(partail code)
+testcase 4: input=abcdefghijklmnopqrstuvwxyzzyxwvutsrsponmlkjihgffedcba
+output=abcdefghijklmnopqsponmlkjihgedcba
+
+
+
+def adj(s):
+    l=[]
+    for i in s:
+        if len(l)==0:
+            l.append(i)
+        else:
+            if l[len(l)-1]!=i:
+                l.append(i)
+            else:
+                l.remove(l[len(l)-1])
+    t=""
+    if len(l)==0:
+        return -1
+    return t.join(l)
+s=input()
+print(adj(s))
