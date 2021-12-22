@@ -1,0 +1,215 @@
+PROGRAM 1:
+
+Harsha a second class student is playing a game on his tab. 
+
+where he has go to second level. He can reach second level if and only if he solves the first level. 
+
+In the first level he will be a given a number series which will contain only '1' and '0's. 
+
+He has to replace '0' to '1' and '1' to '0' and add '1' at the end and produce a new result. 
+
+If he is able to produce a new result he can reach the second level. Help him to reach the second level. 
+
+
+Examples:
+
+ "0111" is "1000" and adding 1 at the end we get 1001
+ "1100" is  "0011" and adding 1 at the end we get 0100
+
+Here adding will done from the last 
+when we add two '1's  we get 10 as the result and 1 is carry forwarded, on continuing the same process we get 0100 as the result 
+
+
+Sample Test Case - 1
+input = 0111
+output = 1001
+
+Sample Test Case - 2
+input = 1100
+output = 0100
+
+
+CODE:
+
+def binary(s):
+    k=""
+    for i in s:
+        if i=='1':
+            k=k+'0'
+        else:
+            k=k+'1'
+    l=int(k,2)
+    c=l+1
+    c=bin(c)
+    c=c[2::]
+    if len(c)>=len(s):
+        return c
+    else:
+        
+        return ('0'*(len(s)-len(c))+c)
+    
+    
+        
+s=input()
+print(binary(s))
+
+
+PROGRAM 2:
+D-Mart Online Shopping portal is giving a buy-2 get-1 free discount.
+There are various categories of goods and the offer is valid on a group of items if they belong to the same category.
+All items in the same category are priced equal.
+So, If you buy 3 items of category A, you pay only for 2 items. 
+But if you buy 2 items of category A and 1 of category B, you pay for all 3 items. 
+Given the categories for various items in your shopping cart and the price for each category, 
+calculate the total price that you will have to pay.
+
+Input
+Each test case will contain two lines. 
+First line will be a string comprising of only alphabets (only upper case)
+Each character represents a category in the shop. 
+Next line will contain a space separated list of 26 integers where 1st integer is price for category A, 
+2nd integer is price for category B and 26th integer is price for category Z.
+Output
+For each test case, print on a single line the price that the customer will have to pay.
+
+
+input
+ABAAABBCDEZDF
+1 2 3 3 2 1 4 7 9 10 11 13 12 1 1 4 5 6 7 8 9 10 2 11 14 15
+output
+34
+
+Explanation :-
+A B C D E F G H I J  K  L  M  N O P Q R S T U V  W X  Y  Z
+1 2 3 3 2 1 4 7 9 10 11 13 12 1 1 4 5 6 7 8 9 10 2 11 14 15
+
+in the above input we have the frequency count of category as follows
+
+      I * P  =  Amount
+A-4 - 3 * 1  =   3
+B-3 - 2 * 2  =   4
+C-1 - 1 * 3  =   3
+D-2 - 2 * 3  =   6
+E-1 - 1 * 2  =   2
+F-1 - 1 * 1  =   1
+Z-1 - 1 * 15 =  15
+       Total  =  34
+
+if we buy two items we get one item free, so in 4 items of Category-A we have to bill only for 3 items 
+for Category B we have to bill only for 2 items. 
+
+In the above frequency I represents the Number of Items for each Category and P represent the cost  
+if we sum all of them we get the total price to be paid by the customer.
+
+
+input
+ZABCDBCADZZZRRRTTURTUTRASDERF
+17 5 3 3 2 1 4 7 19 10 1 3 2 1 1 4 5 6 7 8 9 1 2 1 4 12
+output
+168
+
+Explanation :-
+A  B C D E F G H I  J  K L M N O P Q R S T U V W X Y Z
+17 5 3 3 2 1 4 7 19 10 1 3 2 1 1 4 5 6 7 8 9 1 2 1 4 12
+
+in the above input we have the frequency count of category as follows
+      C *  P    AMOUNT
+Z-4 - 3 * 12  =  36
+A-3 - 2 * 17  =  34
+B-2 - 2 *  5  =  10
+C-2 - 2 *  3  =   6
+D-3 - 2 *  3  =   6
+R-6 - 4 *  6  =  24
+T-4 - 3 *  8  =  24
+U-2 - 2 *  9  =  18
+S-1 - 1 *  7  =   7
+E-1 - 1 *  2  =   2 
+F-1 - 1 *  1  =   1
+       TOTAL  = 168
+
+CODE:
+def cost(s,n):
+    d={}
+    hm={}
+    for i in s:
+        if i not in d:
+            d[i]=s.count(i)
+    k=ord('A')     
+    for i in n:
+       hm[chr(k)]=i
+       k+=1
+    c=0
+    for i in d:
+        if d[i]<=2:
+            c=c+(d[i]*hm[i])
+        else:
+           c=c+(d[i]-(d[i]//3))*hm[i]
+    return c
+            
+
+s=input()
+n=list(map(int,input().split()))
+print(cost(s,n))
+
+PROGRAM 3:
+
+Stanely a old grand father reads a news paper daily.
+While reading a newspaper his grandsone sits besides him. 
+His grandson is intresed in the puzzle given in the newspaper. 
+In the puzzle there will be few rows and columns which contains only alphabets and a new word will be given at the end. 
+we have to see if the word is present in the above given rows or columns and print the correspoind row and column index .
+Help Stanely and his grandsone to solve this. 
+
+
+assume the length of the word is <= rowsize/columnsize
+and the word may be present either vertically or horizontally
+
+if the word is not present print -1
+
+
+Sample Test Case
+input = 3 3
+a b c
+d e f
+g h i
+ef
+output = 
+1 1 1 2
+
+Explanation
+The word "ef" is found at index (1,1) and ends at (1,2)
+
+Sample Test Case-2
+input = 3 3
+a b c
+d e f
+g h i
+ghi
+output = 
+2 0 2 2
+
+Explanation
+The word "ghi" is found at index (2,0) and ends at (2,2)
+
+
+Sample Test Case-2
+input = 3 4
+a b c d
+d e f g
+g h i k
+fi
+output = 
+1 2 2 2
+
+Explanation
+The word "fi" is found at index (1,2) and ends at (2,2)
+
+
+Reading a Character Array from the user 
+char a[][]=new char[m][n];
+for(i=0;i<m;i++)
+for(j=0;j<n;j++)
+  a[i][j]=sc.next().charAt(0);
+
+Here a[][] is 2 dimensional character array 
+
