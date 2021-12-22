@@ -53,7 +53,7 @@ def pro(arr):
             minVal = temp
         maxVal = max(arr[i], maxVal * arr[i])
         minVal = min(arr[i], minVal * arr[i])
-    maxProduct = max(maxProduct, maxVal)
+        maxProduct = max(maxProduct, maxVal)
     return maxProduct
 n=int(input())
 l=list(map(int,input().split()))
