@@ -213,3 +213,26 @@ for(j=0;j<n;j++)
 
 Here a[][] is 2 dimensional character array 
 
+
+PYTHON CODE:
+
+def find(m,n,l,s):
+    if len(s)>m or len(s)>n:
+        return -1
+    s1=""
+    s2=""
+    for i in l:
+        for j in i:
+            if j in s:
+                s1=s1+j
+                s2=s2+str(l.index(i))+str(i.index(j))
+    if s1==s:
+        return (s2[0]+" "+s2[1]+" "+s2[len(s2)-2]+" "+s2[len(s2)-1])
+    return -1
+            
+m,n=map(int,input().split())
+k=[]
+for i in range(m):
+    k.append(list(map(str,input().split())))
+s=input()
+print(find(m,n,k,s))
