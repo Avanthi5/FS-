@@ -1,0 +1,128 @@
+PROGRAM 1:
+
+Scott is a sweet lover and eats sweets daily. His father is worried about his health 
+and gives a task to Scott. If Scott solves the task then he is allowed to eat the sweets.
+
+His task is as follows
+
+Scott is given a word 'W'. Now he is supposed to see, the word is a Balanced Word or Not .
+
+A word is said to be Balanced word if it contains all characters same number of times. 
+He can also make the word Balanced by removing  only one occurence of a character at any index in the word. 
+
+If he is able to do so print "true" else print "false"
+
+
+Sample Test Case-1
+
+input = xyz
+output = true
+
+This is Balanced because (x-1,y-1,z-1)
+
+Sample Test Case-2
+
+input = xyzz
+output = true
+
+This is Balanced because (x-1,y-1,z-2)
+He can remove one occurence of z, It results in (x-1,y-1,z-1)
+
+Sample Test Case-3
+
+input = xxyyzzzz
+output = false
+
+This is not Balanced because (x-2,y-2,z-4)
+By removing once occurence of z, It results in (x-2,y-2,z-3)
+So this is not Balanced
+
+Sample Test Case-4
+
+input = xzxyzxz
+output = true
+
+This is Balanced because (x-3,y-1,z-3)
+By removing once occurence of y, It results in (x-3,z-3)
+So this is  Balanced
+
+
+CODE:
+
+def balance(s):
+    d={}
+    for i in set(s):
+        if i not in d:
+            d[i]=s.count(i)
+        
+    l={}
+    for i in d:
+        if d[i] not in l:
+            l[d[i]]=1
+        else:
+            l[d[i]]+=1
+    if len(l)==1:
+       return True
+    if len(l)==2:
+        diff=0
+        for i in l:
+            diff=i-diff
+        if abs(diff)==1:
+            return True
+            
+        for i in l:
+            if i==1 and l[i]==1:
+                return True
+                
+    return False
+            
+
+s=input()
+print(balance(s))
+
+
+
+
+PROGRAM 2:
+Shyam a clever boy, is good in analyzing the words given to him. 
+He figures out the speciality of the word in any way. 
+Given a word to Shyam, he determines few characters(consecutive) or whole word to be same from left to right and from right to left. 
+Print the word which match the above pattern which has the maximum characters in it.
+He considers the words which matches the above pattern, has a minimum length of 2. 
+
+If no such word exists print -1
+
+Now Check Shyam is correct or not by writing a code for him. 
+
+
+for example:
+input =abbbabbcbbacdb
+output =abbcbba
+
+input=hello
+output=ll
+
+input = abcd
+output=-1
+
+
+CODE:
+def spec(s):
+    if len(s)==len(set(s)):
+        return -1
+    l=[s[i:j] for i in range(0,len(s)+1) for j in range(i+1,len(s)+1)]
+    k=[]
+    for i in l:
+        if i==i[::-1]:
+            k.append(i)
+    a=len(k[0])
+    m=a
+    for i in k:
+        if len(i)>=a:
+            m=i
+            a=len(i)
+    if len(m)>1:
+        return m
+    return -1
+n=input()
+print(spec(n))
