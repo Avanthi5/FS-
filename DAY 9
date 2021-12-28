@@ -1,0 +1,93 @@
+PROGRAM 1:
+
+Tubby a Third Class Student has given a Assignment on Time Chapter by his class teacher.
+Tubby is supposed to change the time given in AM/PM Format to 24 Hours Format. 
+Help Tubby Solve the Problem 
+
+The Maths teacher gave him the time in the following Format - HH:MM:SS:AM/PM
+
+Assume all HH,MM,SS are in the valid range only 
+ 
+Note: Midnight is 12:00:00AM on a 12-hour clock,  and 00:00:00 on a 24-hour clock. 
+Noon is 12:00:00PM on a 12-hour clock,  and 12:00:00 on a 24-hour clock. 
+     
+Assume all input times are valid
+
+Back end test cases
+
+input = 06:10:20PM
+output = 18:10:20
+
+input = 01:45:50PM
+output = 13:45:50
+
+input = 10:05:30AM
+output = 10:05:30
+
+input = 02:13:19AM
+output = 02:13:19
+    
+    
+ CODE:
+ def time(s):
+    t=s[-2::]
+    k1=int(s[0:2])
+    if t=='AM':
+        if k1==12:
+            return ('00'+s[2:len(s)-2])
+        return s[0:len(s)-2]
+    l=int(s[0:2])+12
+    if l<24:
+        k=str(int(s[0:2])+12)+s[2:len(s)-2]
+    else:    
+        k=str((int(s[0:2])+12)%12)+s[2:len(s)-2]
+    return k
+
+n=input()
+print(time(n))
+
+
+
+PROGRAM 2:
+Shyam is given a sentence and asked him to check if it is the same reading from both sides or not. If it is same print true else print false
+
+
+Note - Assume the input line here is not case sensitive
+ignore the special symbols,spaces and compare only the characters and print true or false
+
+
+input =a man a plan a canal panama
+output = 1
+
+in the above  example first character is 'a' last character is 'a'
+second character is 'm' last second character is 'm' and comparing so on all characters should be equal
+
+
+input =do nine men interpret nine men i nod
+output = true
+
+input =Red rum, sir, is murder
+output = true 
+
+input = Was it a cat I saw?
+output = true
+
+input =Eva,   can I s e e b^% e e s i n a ca;;;ve?
+output = true 
+
+input =No lemon, no melon
+output = true 
+
+CODE:
+def palindrome(s1):
+    s=s1.lower()
+    k=""
+    for i in s:
+        if ord('a')<=ord(i)<=ord('z'):
+            k=k+i
+    if k==k[::-1]:
+        return True
+    return False
+n=input()
+print(palindrome(n))
+    
