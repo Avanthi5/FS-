@@ -109,6 +109,45 @@ def pat(n):
 n=int(input())
 pat(n)
 
+(OR)
+
+import java.util.*;
+class test
+{
+    static void pattern(int n)
+    {
+        int i,j,k=0,temp=0;
+        for(i=1;i<=n;i++)
+        {
+            System.out.print(i+" ");
+            k=i;
+            for(j=1;j<i;j++)
+            {
+                if(j%2==0)
+                {
+                    System.out.print(k+(2*(i-j))+" ");
+                    k=k+2*(i-j);
+                }
+                else
+                {
+                    System.out.print(k+((2*(n-i+1))-1)+" ");
+                    k+=(2*(n-i+1))-1;
+                }
+            }
+            System.out.println();
+        }
+    }
+    public static void main(String[]args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        pattern(n);
+    }
+}
+
+
+
+
 PROGRAM:
 
 
