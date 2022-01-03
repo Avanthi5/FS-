@@ -1,0 +1,182 @@
+Program 1:
+
+You are given a sequence A of N integers: A1,A2,A3... AN.
+
+You would like to make all elements in A different.
+
+To do so, you may perform operations 
+of two types:
+
+Remove an element. The cost of this operation is X coins.
+Decrease the value of an element by one. The cost is Y coins.
+
+You may perform as many operations as you wish.
+It is possible and allowed that some elements will become negative
+(after you decrease an element multiple times).
+
+Your task is to find the minimum number of coins you would need in order to 
+make A pairwise distinct.
+
+Input Format
+------------
+The first line contains three space-separated integers N, X, and Y 
+		— the size of the sequence and costs of operations.
+The second line contains N space-separated integers A1,A2,A3...AN
+		— the initial sequence.
+
+Output Format
+-------------
+Print one integer — the minimum number of coins needed to make A pairwise distinct.
+
+
+
+Sample Input :
+6 10 3
+5 2 5 3 5 2
+
+Sample Output :
+16
+
+Explanation :
+we are given a sequence of size n=6.
+The cost of removing and decreasing by one are 10 and 3 respectively.
+
+The initial sequence is (5 2 5 3 5 2).
+One optimal strategy is:
+
+Remove one of three fives, e.g. the middle one. The remaining sequence is (5 2 3 5 2).
+Decrease the second element by one, to get (5 1 3 5 2).
+Decrease the first element by one, to get (4 1 3 5 2).
+This way, you need to spend 10+3+3 =16 coins. 
+The resulting sequence(4 1 3 5 2) is indeed pairwise distinct.
+
+CODE:
+
+def min_price(l,x,y):
+    k={}
+    c=0
+    for i in l:
+        if i not in k:
+            k[i]=1
+        else:
+            if i-1 not in k:
+                k[i-1]=1
+                c+=y
+            else:
+                c+=x
+    return c
+n,x,y=map(int,input().split())
+l=list(map(int,input().split()))
+print(min_price(l,x,y))
+
+/----------------------------------------------------------------------------------
+
+PROGRAM 2:
+A Gold  merchant, announced an offer that they will charge the minimum price to make all the 
+gold coins into one.
+
+Customers who has different weights of gold coins wants to utilize the offer.
+
+The processing charge to make two coins into one is calculated as follows:
+	- To make two coins of weights A and B into one coin, 
+	  you have to pay the amount 'A + B'. 
+
+Your task is to help Gold Merchant to keep his promise and 
+to charge the minimum amount to  gold coins
+into one gold coin
+
+Input Format:
+-------------
+Single line of space separated integers, number on the boxes.
+
+Output Format:
+--------------
+Print an integer, minimum amount to be paid by Customer
+
+
+Sample Input-1:
+---------------
+4 3 6
+
+Sample Output-1:
+----------------
+20
+
+
+Sample Input-2:
+---------------
+5 2 4 3 6
+
+Sample Output-2:
+----------------
+45
+
+CODE:
+
+def price(n,k):
+    if len(n)==2:
+        return sum(n)+k
+    else:
+        n.sort()
+        k1=n[0]+n[1]
+        n=n[2::]
+        n.insert(0,k1)
+    return price(n,k+k1)
+n=list(map(int,input().split()))
+k=0
+print(price(n,k))
+
+
+PROGRAM 3:
+Steve is Designing a New email system.Where he wants to eliminate the gamil  based on few conditions. 
+
+Every valid email consists of a local name and a domain name, in between '@'; 
+For example, in "alice@gmail.com" , "alice" is the local name, and "gmail.com" is the domain name.
+
+Besides lowercase letters, the email may contain one or more '.' or '+' .
+
+If you add periods '.' between some characters in the local name part of an email address, mail sent there will be forwarded to
+the same address without dots in the local name. 
+
+
+For example, "alice.z@gmail.com" and "alicez@gmail.com" forward to the same email address.
+If you add a plus '+' in the local name, everything after the first plus sign will be ignored. 
+This allows certain emails to be eliminated.
+This rule will not be applicable to  to domain names.
+
+
+For example, "m.y+name@email.com" will be forwarded to "my@email.com" .
+It is possible to use both of these rules at the same time.
+
+
+Help Steve to solve the problem 
+He will be given an group of email-ids where we send one email to each emails[i], return the number of different addresses that
+actually receive mails.
+
+
+Sample Test Case 
+Input =test.email+alex@gmail.com  test.e.mail+bob.cathy@gmail.com  testemail+david@gm.ail.com
+Output: 2
+
+Explanation: "testemail@gmail.com" and "testemail@gm.ail.com" actually receive mails.
+
+
+Example 2:
+Input: emails =a@gmail.com b@gmail.com c@gmail.com
+Output: 3
+
+CODE:
+
+def diff(l):
+    k=[]
+    for i in l:
+        if '+' in i:
+            ind1=i.index('+')
+            ind2=i.index('@')
+            i=i[0:ind1]+i[ind2:]
+        i=i.split('@')
+        s=i[0].replace('.','')
+        k.append(s+'@'+i[1])
+    return len(set(k))
+l=list(map(str,input().split()))
+print(diff(l))
