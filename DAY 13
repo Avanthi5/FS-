@@ -1,0 +1,130 @@
+Amazon fire tv stick keyboard wanted to be operated on number pad. 
+You will be given the below pad. 
+You are supposed to print all possible words in alphabetic order for a given number (0-9)
+
+	1		2		3
+		   abc	   def
+		 
+	4		5		6
+   ghi             jkl     mno
+  
+	7		8		9
+  pqrs           tuv    wxyz
+	
+	*		0		#
+
+
+You will be given a string S which contains (2-9)  only  
+For example: S = "3", then the possible words are "d", "e", "f".
+
+Input Format:
+-------------
+String(2-9)
+
+Output Format:
+--------------
+Print the list of words in alphabetical order
+
+
+Sample Input-1:
+---------------
+2
+
+Sample Output-1:
+----------------
+a b c
+
+
+Sample Input-2:
+---------------
+24
+
+Sample Output-2:
+----------------
+ag ah ai bg bh bi cg ch ci
+
+CODE:
+
+def words(n):
+    k={2:'abc',3:'def',4:'ghi',5:'jkl',6:'mno',7:'pqrs',8:'tuv',9:'wxyz'}
+    s=str(n)
+    l=len(s)
+    q=""
+    if l==1:
+        for i in k[n]:
+            q=q+i+" "
+        print(q)
+    else:
+        li=list(k[int(s[0])])
+        for i in range(l-1):
+            l1=li
+            l2=list(k[int(s[i+1])])
+            li=[]
+Sunder a Military Research Team wants to decode a message(A-1,B-2...Z-26). 
+If Sunder is given a Number he wants to check in how many ways the number can be written into Characters. 
+
+For Example - 123 can be assumed as 
+
+ABC (A-1,B-2,C-3)  
+AW  (A-1,W-23)
+ LC    (L-12,C-3)
+
+Total Ways are 3. He wants to write the code to get the number of ways . Help Sunder solve the problem.
+
+Assume the Input number will be a valid word. 
+
+For all Invalid Outputs print 0 
+
+input = 100
+output = 0
+
+CODE:(80%) (Decode dp leetcode)
+import java.util.*;
+class test
+{
+    static int count(String str,int n)
+    {
+        int c,c1=1,c2=1,i;
+        if(str.charAt(0)=='0')
+        {
+            return 0;
+        }
+        else
+        {
+            for(i=1;i<n;i++)
+            {
+                c=0;
+                if(str.charAt(i)>'0')
+                {
+                   c+=c1; 
+                }
+                if(str.charAt(i-1)=='1'||str.charAt(i-1)=='2' && str.charAt(i)<'7')
+                {
+                    c+=c2;
+                }
+                c2=c1;
+                c1=c;
+            }
+            return c1;
+        }
+    }
+    public static void main(String[]args)
+    {
+        Scanner sc=new Scanner(System.in);
+        String str=sc.next();
+        int n=str.length();
+        System.out.println(count(str,n));
+    }
+}
+
+            for j in l1:
+                for j1 in l2:
+                    li.append(j+j1)
+        for i in li:
+            print(i,end=" ")
+            
+n=int(input())
+words(n)
+
+PROGRAM:
+
