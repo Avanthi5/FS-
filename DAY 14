@@ -38,3 +38,7 @@ while(s!="F"*n):
     s=a1+q
     
 print(c)
+
+
+
+https://leetcode.com/problems/frequency-of-the-most-frequent-element/
