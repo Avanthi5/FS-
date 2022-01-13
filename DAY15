@@ -1,0 +1,207 @@
+Shyam is given a group of numbers and a value(k),Now he wants to see if the group of numbers 
+can be arranged into sets of k consecutive groups. 
+
+if he can do print yes else print no 
+
+The first line of input consists of the group of numbers followed by a value (k) 
+
+input = 1,2,3,3,4,4,5,6
+4
+output = yes
+
+Explanation: Group can be arranged into (1,2,3,4) and (3,4,5,6)
+
+
+Input = 3 2 1 2 3 4 3 4 5 9 10 11
+3
+output = yes
+
+Explanation: Group can be arranged into (1,2,3) , (2,3,4) , (3,4,5) and (9,10,11).
+
+Input = 1 2 3 4 
+3
+output = no
+
+
+Explanation: Each group should be arranged in sub-group of size 3.
+
+
+
+code:
+
+from collections import defaultdict
+def groupInKConsecutive(arr, K):
+    arr.sort()
+    count = defaultdict(int)
+    for h in arr:
+        count[h] += 1
+    for key, value in count.items():
+        cur = key
+        n = value
+        if (n > 0):
+            for i in range(1, K):
+                if ((cur + i) not in count):
+                    return False
+ 
+                count[cur + i] -= n
+ 
+                if (count[cur + i] < 0):
+                    return False
+                     
+    return True
+
+arr=list(map(int,input().split()))
+k=int(input())
+if (groupInKConsecutive(arr, k)):
+    print("yes")
+else:
+    print("no")
+ 
+
+
+Given two Integer ArrayList, add their elements to a new ArrayList by satisfying following conditions 
+
+1. Addition should be done starting from 0th index of both ArrayList.
+2. Split the sum if it is a not a single digit number and store the digits in adjacent locations
+3. Output ArrayList should accommodate any remaining digits of larger input ArrayList.
+4.Assume the input contains only positive numbers
+
+Examples:
+First line contains the size of first ArrayList followed by first ArrayList elements followed by second ArrayList size followed by 
+second ArrayList elements 
+
+
+input =
+6
+9 2 3 7 9 6
+8
+3 1 4 7 8 7 6 9
+output =
+1 2 3 7 1 4 1 7 1 3 6 9
+
+input = 
+6
+9343 2 3 7 9 6
+8
+34 11 4 7 8 7 6 99
+output =
+9 3 7 7 1 3 7 1 4 1 7 1 3 6 9 9
+
+input = 
+3
+345 124 54
+5
+123 221 325 4234 5167
+output = 
+4 6 8 3 4 5 3 7 9 4 2 3 4 5 1 6 7
+
+code:
+def add(l1,l2):
+    l=[]
+    for i in range(max(len(l1),len(l2))):
+        s=0
+        if i<len(l1) and i<len(l2):
+            s=l1[i]+l2[i]
+            s1=str(s)
+            for j in s1:
+                l.append(j)
+        if i<=len(l1) and i>=len(l2):
+            s=l1[i]
+            s1=str(s)
+            for j in s1:
+                l.append(j)
+        if i>=len(l1) and i<=len(l2):
+            s=l2[i]
+            s1=str(s)
+            for j in s1:
+                l.append(j)
+    
+    for i in range(len(l)):
+        print(int(l[i]),end=" ")
+        
+n1=int(input())
+l1=list(map(int,input().split()))
+n2=int(input())
+l2=list(map(int,input().split()))
+add(l1,l2)
+
+
+
+Three Friends are given three rows of the keyboard, The first row is given to Shyam,second row is given to gopal, third row is given to ramu. 
+
+Teacher has given them few lines of words and asked each individual if they can print the words that can be printed using the letters of the rows given to them 
+
+Shyam has given the row -   QWERTYUIOP/qwertyuiop
+Gopal has given the row -    ASDFGHIJKL/asdfghjkl
+Ramu has given the row -   ZXCVBNM/zxcvbnm
+
+Teacher also gave the following rules in addition ;
+    You may use one character in the row more than once.
+    You may assume the input string will only contain letters of alphabet(A-Z/a-z).
+    Assume the alphabets are case sensitive 
+
+    Print -1 for all Boundary Conditions 
+
+Example:
+
+input =hello Alaska Dad Peace
+output = 
+Alaska 
+Dad
+
+
+Here the words Alaska and Dad are the characters of second student gopal only 
+
+
+input =asdf qwer zxcv
+output =
+asdf
+qwer
+zxcv
+
+input =Dad hAS the Key
+output = Dad
+hAS
+
+input =to be or not TO be 
+output = to
+or
+TO
+
+code:
+
+def fun(l):
+    a="QWERTYUIOPqwertyuiop"
+    b="ASDFGHIJKL/asdfghjkl"
+    c="ZXCVBNMzxcvbnm"
+    ans=[]
+    for i in l:
+        s=0
+        q=i[0]
+        if q in a:
+            for j in i:
+                if j in a:
+                    s+=1
+            if (s==len(i)):
+                ans.append(i)
+        if q in b:
+            for j in i:
+                if j in b:
+                    s+=1
+            if (s==len(i)):
+                ans.append(i)
+        if q in c:
+            for j in i:
+                if j in c:
+                    s+=1
+            if (s==len(i)):
+                ans.append(i)
+    return ans
+    
+l=list(map(str,input().split()))
+ans=fun(l)
+if len(ans)==0:
+    print(-1)
+else:
+    for i in ans:
+        print(i)
